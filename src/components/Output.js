@@ -6,9 +6,10 @@ import {MdOutlineContentCopy} from "react-icons/md";
 import {VscClearAll} from "react-icons/vsc";
 import {IoMdDoneAll} from "react-icons/io";
 import {IoWarningOutline} from "react-icons/io5";
+import FontSizeInput from './FontSizeInput';
 
 const Output = () => {
-  const {inputValue, resetInput, theme} = useContext(TranscriptContext);
+  const {inputValue, resetInput, theme, fontSize} = useContext(TranscriptContext);
   const [transcribedValue, setTranscribedValue] = useState();
   const textAreaRef = useRef();
   const [copied, setCopied] = useState(false);
@@ -18,19 +19,22 @@ const Output = () => {
     const transcribedText = Array.from(text).map(letter => {
 
       const currentLetter = letter;
-      const nextLetter = text[letter + 1];
-      const combination = currentLetter + nextLetter;
-
+      // const nextLetter = text[letter + 1];
+      // const combination = currentLetter + nextLetter;
+  
+      // if (combination in dictionary) return dictionary[combination];
       if (currentLetter in dictionary) return dictionary[currentLetter];
-      else if (combination in dictionary) return dictionary[combination];
       else {
-        if (warning.includes(letter)) return "?";
+        if (warning.includes(letter)) return letter;
         setWarning([...warning, letter]);
-        return "?";
+        return letter;
       }
     })
+    return checkForCombinations(transcribedText.join(""));
+  }
 
-    return transcribedText.join("");
+  const checkForCombinations = (text) => {
+    
   }
 
   const copyText = (e) => {
@@ -88,13 +92,14 @@ const Output = () => {
           className="icon"/>}
           color="yellow"
         />
+        <FontSizeInput/>
       </div>
       {warning.length ? <div className='warning-container'>
         <IoWarningOutline className='icon'/>
         <p className={theme === "dark" ? 'warning dark' : "warning"}><span>{warning.join(", ")}</span> {warning.length > 1 ? "are not in the dictionary": "is not in the dictionary"}</p>
       </div> : null}
     </div>
-    <textarea ref={textAreaRef} id='output' readOnly value={transcribedValue}/>
+    <textarea ref={textAreaRef} id='output' style={{fontSize: Number(fontSize)}} readOnly value={transcribedValue}/>
     </>
   )
 }

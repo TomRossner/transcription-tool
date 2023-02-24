@@ -2,12 +2,12 @@ import React, { useContext } from 'react';
 import { TranscriptContext } from '../context/TranscriptContext';
 
 const Input = () => {
-    const {inputValue, setInputValue} = useContext(TranscriptContext);
+    const {inputValue, setInputValue, fontSize} = useContext(TranscriptContext);
 
     const handleChange = (e) => setInputValue(e.target.value);
 
   return (
-    <textarea id='input' onChange={handleChange} value={inputValue}/>
+    <textarea id='input' style={{fontSize: Number(fontSize)}} onChange={handleChange} value={inputValue}/>
   )
 }
 

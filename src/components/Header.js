@@ -1,20 +1,28 @@
 import React, { useContext } from 'react';
 import {BsMoonFill, BsFillSunFill} from "react-icons/bs";
 import { TranscriptContext } from '../context/TranscriptContext';
+import {IoSettingsSharp} from "react-icons/io5";
 
 const Header = () => {
-  const {theme, setTheme} = useContext(TranscriptContext);
+  const {theme, setTheme, setSettingsTabOpen} = useContext(TranscriptContext);
 
   const toggleTheme = () => {
     if (theme === "dark") return setTheme("light");
     else setTheme("dark");
   }
 
+  const handleSettingsTab = () => {
+    setSettingsTabOpen(true);
+  }
+
   return (
     <div className='header'>
         <div className='title-and-theme'>
           <h1>Transcript app</h1>
-          <span onClick={toggleTheme} className={theme === "dark" ? "dark" : ""}>{theme === "dark" ? <BsFillSunFill className='icon'/> : <BsMoonFill className="icon" />}</span>
+          <div className='icons-container'>
+            <span onClick={handleSettingsTab} className={theme === "dark" ? "dark" : ""}><IoSettingsSharp className="icon"/></span>
+            <span onClick={toggleTheme} className={theme === "dark" ? "dark" : ""}>{theme === "dark" ? <BsFillSunFill className='icon'/> : <BsMoonFill className="icon" />}</span>
+          </div>
         </div>
         <div className={theme === "dark" ? 'header-text dark' : "header-text"}>
           <p>הקלידו את הטקסט שלכם בתעתיק מדויק:</p>
