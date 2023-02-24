@@ -8,7 +8,7 @@ import {IoMdDoneAll} from "react-icons/io";
 import {IoWarningOutline} from "react-icons/io5";
 
 const Output = () => {
-  const {inputValue, resetInput} = useContext(TranscriptContext);
+  const {inputValue, resetInput, theme} = useContext(TranscriptContext);
   const [transcribedValue, setTranscribedValue] = useState();
   const textAreaRef = useRef();
   const [copied, setCopied] = useState(false);
@@ -46,9 +46,21 @@ const Output = () => {
     setWarning([]);
   }
 
+  const refreshWarning = () => {
+    const lettersInWarningButNotInInputValueAnymore = warning.map(letter => {
+      if (!inputValue.includes(letter)) return setWarning([...warning.filter(l => l !== letter)]);
+      else return letter;
+    })
+    return lettersInWarningButNotInInputValueAnymore;
+  }
+
   useEffect(() => {
-    if (!inputValue) return setTranscribedValue("");
+    if (!inputValue) {
+      refreshWarning();
+      return setTranscribedValue("");
+    }
     setTranscribedValue(transcribe(inputValue));
+    refreshWarning();
   }, [inputValue])
 
   useEffect(() => {
@@ -66,7 +78,7 @@ const Output = () => {
         <Button
           action={copyText}
           text={copied ? "Copied!" : "Copy"}
-          icon={copied ? <IoMdDoneAll className="icon"/> : <MdOutlineContentCopy className="icon"/>}
+          icon={copied ? <IoMdDoneAll className={copied ? "icon copied" : "icon"}/> : <MdOutlineContentCopy className="icon"/>}
           color="green"
         />
         <Button
@@ -79,7 +91,7 @@ const Output = () => {
       </div>
       {warning.length ? <div className='warning-container'>
         <IoWarningOutline className='icon'/>
-        <p className='warning'><span>{warning.join(", ")}</span> {warning.length > 1 ? "are not in the dictionary": "is not in the dictionary"}</p>
+        <p className={theme === "dark" ? 'warning dark' : "warning"}><span>{warning.join(", ")}</span> {warning.length > 1 ? "are not in the dictionary": "is not in the dictionary"}</p>
       </div> : null}
     </div>
     <textarea ref={textAreaRef} id='output' readOnly value={transcribedValue}/>
