@@ -31,9 +31,17 @@ export const LS_setFontFamily = (font) => {
 
 export const LS_getFontFamily = () => {
     const font = localStorage.getItem('font_family');
-    if (font === "Calibri") return "Calibri";
-    if (font === "Times New Roman") return "Times New Roman";
-    if (font === "Gulzar") return "Gulzar";
-    if (font === "IBM Plex Sans Arabic") return "IBM Plex Sans Arabic";
-    else return "Calibri";
+    
+    switch(font) {
+        case "Calibri":
+            return "Calibri";
+        case "Times New Roman":
+            return "Times New Roman";
+        case "Gulzar":
+            return "Gulzar";
+        case "IBM Plex Sans Arabic":
+            return "IBM Plex Sans Arabic";
+        default:
+            return "Calibri";
+    }
 }

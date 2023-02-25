@@ -25,8 +25,8 @@ const Header = () => {
         <div className='title-and-theme'>
           <h1>Transcript App</h1>
           <div className='icons-container'>
-            <span onClick={handleSettingsTab} className={theme === "dark" ? "dark" : ""}><IoSettingsSharp className="icon"/></span>
-            <span onClick={toggleTheme} className={theme === "dark" ? "dark" : ""}>{theme === "dark" ? <BsFillSunFill className='icon'/> : <BsMoonFill className="icon" />}</span>
+            <span onClick={handleSettingsTab} className={theme === "dark" ? "dark" : ""}><IoSettingsSharp className="icon" title='Settings'/></span>
+            <span onClick={toggleTheme} className={theme === "dark" ? "dark" : ""} title="Toggle Theme">{theme === "dark" ? <BsFillSunFill className='icon'/> : <BsMoonFill className="icon" />}</span>
           </div>
         </div>
         <div className={theme === "dark" ? 'header-text dark' : "header-text"}>

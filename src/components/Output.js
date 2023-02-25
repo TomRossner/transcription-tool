@@ -9,9 +9,10 @@ import {IoWarningOutline} from "react-icons/io5";
 import FontSizeInput from './FontSizeInput';
 import {TbSwitchHorizontal} from "react-icons/tb";
 import FontSelection from './FontSelection';
+import { LS_setFontFamily } from '../utils/LS';
 
 const Output = () => {
-  const {inputValue, resetInput, theme, fontSize, isAutoTranscribeChecked, font} = useContext(TranscriptContext);
+  const {inputValue, resetInput, theme, fontSize, isAutoTranscribeChecked, font, setFontFamily, defaultFont} = useContext(TranscriptContext);
   const [transcribedValue, setTranscribedValue] = useState();
   const textAreaRef = useRef();
   const [copied, setCopied] = useState(false);
@@ -50,7 +51,6 @@ const Output = () => {
   const copyText = (e) => {
     if (!textAreaRef.current.value) return;
     setCopied(true);
-    textAreaRef.current.select();
     navigator.clipboard.writeText(textAreaRef.current.value);
     e.target.focus();
   }
@@ -67,6 +67,14 @@ const Output = () => {
     })
     return lettersInWarningButNotInInputValueAnymore;
   }
+
+  const handleFontChange = (e) => {
+    setFontFamily(e.target.value);
+}
+
+useEffect(() => {
+    LS_setFontFamily(defaultFont);
+}, [defaultFont])
 
   useEffect(() => {
     if (!inputValue) {
@@ -112,8 +120,10 @@ const Output = () => {
           className="icon"/>}
           color="yellow"
         />
+      </div>
+      <div className='font-settings'>
         <FontSizeInput/>
-        <FontSelection/>
+        <FontSelection state={font} action={handleFontChange}/>
       </div>
       {/* {warning.length ? <div className='warning-container'>
         <IoWarningOutline className='icon'/>

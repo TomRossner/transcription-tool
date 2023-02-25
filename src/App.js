@@ -4,9 +4,11 @@ import Input from './components/Input';
 import Output from './components/Output';
 import Settings from './components/Settings';
 import { TranscriptContext } from './context/TranscriptContext';
+import Footer from './components/Footer';
 import './styles/main.styles.scss';
 import './styles/toggle-switch.styles.scss';
 import './styles/settings.styles.scss';
+import './styles/footer.styles.scss';
 
 function App() {
   const {theme, settingsTabOpen} = useContext(TranscriptContext);
@@ -18,6 +20,7 @@ function App() {
         <Header/>
         <Input/>
         <Output/>
+      <Footer/>
       </div>
     </div>
   );

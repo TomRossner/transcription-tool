@@ -19,7 +19,9 @@ export const TranscriptContext = createContext({
     isAutoTranscribeChecked: true,
     setIsAutoTranscribeChecked: () => {},
     font: "",
-    setFontFamily: () => {}
+    setFontFamily: () => {},
+    defaultFont: "",
+    setDefaultFont: () => {}
 })
 
 const TranscriptProvider = ({children}) => {
@@ -30,7 +32,8 @@ const TranscriptProvider = ({children}) => {
     const [fontSize, setFontSize] = useState(defaultFontSize);
     const [settingsTabOpen, setSettingsTabOpen] = useState(false);
     const [isAutoTranscribeChecked, setIsAutoTranscribeChecked] = useState(LS_getAutoTranscribe());
-    const [font, setFontFamily] = useState(LS_getFontFamily());
+    const [defaultFont, setDefaultFont] = useState(LS_getFontFamily());
+    const [font, setFontFamily] = useState(defaultFont);
 
     const resetInput = () => setInputValue("");
     const resetFontSize = () => setFontSize(20);
@@ -53,7 +56,9 @@ const TranscriptProvider = ({children}) => {
       isAutoTranscribeChecked,
       setIsAutoTranscribeChecked,
       font,
-      setFontFamily
+      setFontFamily,
+      defaultFont,
+      setDefaultFont
     };
 
   return (
