@@ -9,7 +9,7 @@ export const LS_setFontSize = (fontSize) => {
 
 export const LS_getAutoTranscribe = () => {
     const auto_transcribe = localStorage.getItem('auto_transcribe');
-    return auto_transcribe === "true" ? true : false;
+    return auto_transcribe === "false" ? false : true;
 }
 
 export const LS_setAutoTranscribe = (bool) => {
