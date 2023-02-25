@@ -1,5 +1,5 @@
 import React, { createContext, useState, useEffect } from 'react';
-import { LS_getAutoTranscribe, LS_getFontSize, LS_getTheme } from '../utils/LS';
+import { LS_getAutoTranscribe, LS_getFontFamily, LS_getFontSize, LS_getTheme } from '../utils/LS';
 
 export const TranscriptContext = createContext({
     inputValue: "",
@@ -17,7 +17,9 @@ export const TranscriptContext = createContext({
     defaultFontSize: 20,
     setDefaultFontSize: () => {},
     isAutoTranscribeChecked: true,
-    setIsAutoTranscribeChecked: () => {}
+    setIsAutoTranscribeChecked: () => {},
+    font: "",
+    setFontFamily: () => {}
 })
 
 const TranscriptProvider = ({children}) => {
@@ -28,6 +30,7 @@ const TranscriptProvider = ({children}) => {
     const [fontSize, setFontSize] = useState(defaultFontSize);
     const [settingsTabOpen, setSettingsTabOpen] = useState(false);
     const [isAutoTranscribeChecked, setIsAutoTranscribeChecked] = useState(LS_getAutoTranscribe());
+    const [font, setFontFamily] = useState(LS_getFontFamily());
 
     const resetInput = () => setInputValue("");
     const resetFontSize = () => setFontSize(20);
@@ -48,7 +51,9 @@ const TranscriptProvider = ({children}) => {
       defaultFontSize,
       setDefaultFontSize,
       isAutoTranscribeChecked,
-      setIsAutoTranscribeChecked
+      setIsAutoTranscribeChecked,
+      font,
+      setFontFamily
     };
 
   return (

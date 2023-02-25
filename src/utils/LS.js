@@ -24,3 +24,16 @@ export const LS_getTheme = () => {
 export const LS_setTheme = (theme) => {
     return localStorage.setItem('theme', theme);
 }
+
+export const LS_setFontFamily = (font) => {
+    return localStorage.setItem('font_family', font);
+}
+
+export const LS_getFontFamily = () => {
+    const font = localStorage.getItem('font_family');
+    if (font === "Calibri") return "Calibri";
+    if (font === "Times New Roman") return "Times New Roman";
+    if (font === "Gulzar") return "Gulzar";
+    if (font === "IBM Plex Sans Arabic") return "IBM Plex Sans Arabic";
+    else return "Calibri";
+}

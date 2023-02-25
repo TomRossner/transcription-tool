@@ -8,9 +8,10 @@ import {IoMdDoneAll} from "react-icons/io";
 import {IoWarningOutline} from "react-icons/io5";
 import FontSizeInput from './FontSizeInput';
 import {TbSwitchHorizontal} from "react-icons/tb";
+import FontSelection from './FontSelection';
 
 const Output = () => {
-  const {inputValue, resetInput, theme, fontSize, isAutoTranscribeChecked} = useContext(TranscriptContext);
+  const {inputValue, resetInput, theme, fontSize, isAutoTranscribeChecked, font} = useContext(TranscriptContext);
   const [transcribedValue, setTranscribedValue] = useState();
   const textAreaRef = useRef();
   const [copied, setCopied] = useState(false);
@@ -39,6 +40,11 @@ const Output = () => {
       }
     }
     return transcribedText.join("");
+  }
+
+  const textareaStyles = {
+    fontFamily: font,
+    fontSize: Number(fontSize)
   }
 
   const copyText = (e) => {
@@ -107,13 +113,14 @@ const Output = () => {
           color="yellow"
         />
         <FontSizeInput/>
+        <FontSelection/>
       </div>
-      {warning.length ? <div className='warning-container'>
+      {/* {warning.length ? <div className='warning-container'>
         <IoWarningOutline className='icon'/>
         <p className={theme === "dark" ? 'warning dark' : "warning"}><span>{warning.join(", ")}</span> {warning.length > 1 ? "are not in the dictionary": "is not in the dictionary"}</p>
-      </div> : null}
+      </div> : null} */}
     </div>
-    <textarea ref={textAreaRef} id='output' style={{fontSize: Number(fontSize)}} readOnly value={transcribedValue}/>
+    <textarea ref={textAreaRef} id='output' style={textareaStyles} readOnly value={transcribedValue}/>
     </>
   )
 }

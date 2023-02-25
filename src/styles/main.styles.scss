@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700&family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Gulzar&family=IBM+Plex+Sans+Arabic&display=swap'); // Gulzar and Plex Sans
 
 $green: rgb(9, 161, 29);
 $yellow: rgb(235, 211, 1);
@@ -23,7 +24,6 @@ body{
     min-height: 100vh;
     color: rgb(255, 255, 255, 0.8);
     transition: background-color 0.2s;
-    user-select: none;
 
     &.dark{
         background-color: rgb(20, 20, 39);
@@ -139,14 +139,10 @@ body{
     }
     
     #output{
-        font-family: Calibri;
+        
     
         &:focus-visible{
             scale: 1;
-        }
-    
-        &::selection{
-            background-color: transparent;
         }
     }
     
@@ -155,7 +151,13 @@ body{
         align-items: center;
         width: 100%;
         padding-inline: 1rem;
-    
+
+        #font-selection{
+            padding: 0.2rem;
+            font-size: 1.02rem;
+            border-radius: 5px;
+            border: 1px solid rgb(0, 0, 0, 0.2);
+        }
     
         .warning-container{
             display: flex;

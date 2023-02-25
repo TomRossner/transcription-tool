@@ -23,7 +23,7 @@ const Header = () => {
   return (
     <div className='header'>
         <div className='title-and-theme'>
-          <h1>Transcript app</h1>
+          <h1>Transcript App</h1>
           <div className='icons-container'>
             <span onClick={handleSettingsTab} className={theme === "dark" ? "dark" : ""}><IoSettingsSharp className="icon"/></span>
             <span onClick={toggleTheme} className={theme === "dark" ? "dark" : ""}>{theme === "dark" ? <BsFillSunFill className='icon'/> : <BsMoonFill className="icon" />}</span>
