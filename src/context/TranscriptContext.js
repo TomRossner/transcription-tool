@@ -1,5 +1,5 @@
 import React, { createContext, useState, useEffect } from 'react';
-import { LS_getAutoTranscribe, LS_getFontSize } from '../utils/LS';
+import { LS_getAutoTranscribe, LS_getFontSize, LS_getTheme } from '../utils/LS';
 
 export const TranscriptContext = createContext({
     inputValue: "",
@@ -23,7 +23,7 @@ export const TranscriptContext = createContext({
 const TranscriptProvider = ({children}) => {
     const [inputValue, setInputValue] = useState("");
     const [outputValue, setOutputValue] = useState("");
-    const [theme, setTheme] = useState("");
+    const [theme, setTheme] = useState(LS_getTheme());
     const [defaultFontSize, setDefaultFontSize] = useState(LS_getFontSize());
     const [fontSize, setFontSize] = useState(defaultFontSize);
     const [settingsTabOpen, setSettingsTabOpen] = useState(false);

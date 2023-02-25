@@ -15,3 +15,12 @@ export const LS_getAutoTranscribe = () => {
 export const LS_setAutoTranscribe = (bool) => {
     return localStorage.setItem('auto_transcribe', bool);
 }
+
+export const LS_getTheme = () => {
+    const theme = localStorage.getItem('theme');
+    return theme === 'dark' ? 'dark' : 'light';
+}
+
+export const LS_setTheme = (theme) => {
+    return localStorage.setItem('theme', theme);
+}

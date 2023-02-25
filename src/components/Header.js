@@ -1,7 +1,8 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import {BsMoonFill, BsFillSunFill} from "react-icons/bs";
 import { TranscriptContext } from '../context/TranscriptContext';
 import {IoSettingsSharp} from "react-icons/io5";
+import { LS_setTheme } from '../utils/LS';
 
 const Header = () => {
   const {theme, setTheme, setSettingsTabOpen} = useContext(TranscriptContext);
@@ -14,6 +15,10 @@ const Header = () => {
   const handleSettingsTab = () => {
     setSettingsTabOpen(true);
   }
+
+  useEffect(() => {
+    LS_setTheme(theme);
+  }, [theme])
 
   return (
     <div className='header'>
