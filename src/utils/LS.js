@@ -1,5 +1,6 @@
 export const LS_getFontSize = () => {
-    return localStorage.getItem('font_size');
+    const fontSize = localStorage.getItem('font_size');
+    return fontSize ? fontSize : 20;
 }
 
 export const LS_setFontSize = (fontSize) => {
