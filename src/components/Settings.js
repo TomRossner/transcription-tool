@@ -4,7 +4,7 @@ import ToggleSwitch from './ToggleSwitch';
 import {VscChromeClose} from "react-icons/vsc";
 
 const Settings = () => {
-    const {setDefaultFontSize, defaultFontSize, setSettingsTabOpen} = useContext(TranscriptContext);
+    const {setDefaultFontSize, defaultFontSize, setSettingsTabOpen, isAutoTranscribeChecked, setIsAutoTranscribeChecked} = useContext(TranscriptContext);
 
     const handleDefaultFontSizeChange = (e) => {
         setDefaultFontSize(e.target.value);
@@ -14,13 +14,17 @@ const Settings = () => {
         setSettingsTabOpen(false);
     }
 
+    const handleAutoTranscribeCheckChange = () => {
+        setIsAutoTranscribeChecked(!isAutoTranscribeChecked);
+    }
+
   return (
     <div className='settings-container'>
         <div className='settings-content'>
         <span className='icon-container' onClick={handleClose}><VscChromeClose className='icon'/></span>
             <div className='setting'>
                 <p>Auto-transcribe</p>
-                <ToggleSwitch/>
+                <ToggleSwitch state={isAutoTranscribeChecked} stateFunction={handleAutoTranscribeCheckChange}/>
             </div>
             <div className='setting'>
                 <p>Default font size</p>

@@ -7,34 +7,38 @@ import {VscClearAll} from "react-icons/vsc";
 import {IoMdDoneAll} from "react-icons/io";
 import {IoWarningOutline} from "react-icons/io5";
 import FontSizeInput from './FontSizeInput';
+import {TbSwitchHorizontal} from "react-icons/tb";
 
 const Output = () => {
-  const {inputValue, resetInput, theme, fontSize} = useContext(TranscriptContext);
+  const {inputValue, resetInput, theme, fontSize, isAutoTranscribeChecked} = useContext(TranscriptContext);
   const [transcribedValue, setTranscribedValue] = useState();
   const textAreaRef = useRef();
   const [copied, setCopied] = useState(false);
   const [warning, setWarning] = useState([]);
 
   const transcribe = (text) => {
-    const transcribedText = Array.from(text).map(letter => {
-
-      const currentLetter = letter;
-      // const nextLetter = text[letter + 1];
-      // const combination = currentLetter + nextLetter;
-  
-      // if (combination in dictionary) return dictionary[combination];
-      if (currentLetter in dictionary) return dictionary[currentLetter];
-      else {
-        if (warning.includes(letter)) return letter;
-        setWarning([...warning, letter]);
-        return letter;
-      }
-    })
-    return checkForCombinations(transcribedText.join(""));
-  }
-
-  const checkForCombinations = (text) => {
+    const transcribedText = [];
     
+    for (let i = 0; i < text.length; i++) {
+      const currentLetter = text[i];
+      const nextLetter = text[i + 1];
+      const combination = currentLetter + nextLetter;
+
+      if (combination in dictionary) {
+        transcribedText.push(dictionary[combination]);
+        i++; // Skip the next letter since we already transcribed it
+      } else if (currentLetter in dictionary) {
+        transcribedText.push(dictionary[currentLetter]);
+      } else {
+        if (warning.includes(currentLetter)) {
+          transcribedText.push(currentLetter);
+        } else {
+          setWarning([...warning, currentLetter]);
+          transcribedText.push(currentLetter);
+        }
+      }
+    }
+    return transcribedText.join("");
   }
 
   const copyText = (e) => {
@@ -63,7 +67,9 @@ const Output = () => {
       refreshWarning();
       return setTranscribedValue("");
     }
-    setTranscribedValue(transcribe(inputValue));
+    if (isAutoTranscribeChecked) {
+      setTranscribedValue(transcribe(inputValue));
+    }
     refreshWarning();
   }, [inputValue])
 
@@ -79,6 +85,14 @@ const Output = () => {
     <>
     <div className='middle'>
       <div className='buttons-container'>
+        {!isAutoTranscribeChecked && (
+          <Button
+            action={() => setTranscribedValue(transcribe(inputValue))}
+            text="Transcribe"
+            icon={<TbSwitchHorizontal className="icon"/>}
+            color="blue"
+          />
+        )}
         <Button
           action={copyText}
           text={copied ? "Copied!" : "Copy"}

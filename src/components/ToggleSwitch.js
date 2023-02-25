@@ -1,10 +1,10 @@
 import React from 'react';
 
-const ToggleSwitch = () => {
-    const handleChange = () => {}
+const ToggleSwitch = ({state, stateFunction}) => {
+
   return (
     <label className="switch">
-        <input type="checkbox" onChange={handleChange}/>
+        <input type="checkbox" checked={state} onChange={stateFunction}/>
         <span className="slider round"></span>
     </label>
   )

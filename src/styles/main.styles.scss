@@ -2,6 +2,7 @@
 
 $green: rgb(9, 161, 29);
 $yellow: rgb(235, 211, 1);
+$blue: rgb(1, 161, 235);
 
 *{
     margin: 0;
@@ -272,6 +273,10 @@ body{
                 background-color: $yellow;
                 background: linear-gradient(0deg, rgba(239,240,59,1) 31%, rgba(240,194,5,1) 100%);
             }
+            &.blue{
+                background-color: $blue;
+                background: linear-gradient(0deg, rgb(59, 189, 240) 31%, rgb(5, 126, 240) 100%);
+            }
         }
     
         &:active{
@@ -283,6 +288,9 @@ body{
         }
         &.yellow{
             border: 1px solid $yellow;
+        }
+        &.blue{
+            border: 1px solid $blue;
         }
     
         span{
