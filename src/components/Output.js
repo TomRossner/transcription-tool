@@ -30,10 +30,10 @@ const Output = () => {
       } else if (currentLetter in dictionary) {
         transcribedText.push(dictionary[currentLetter]);
       } else {
-        if (warning.includes(currentLetter)) {
+        if (!warning.includes(currentLetter)) {
           transcribedText.push(currentLetter);
+          setWarning((warning) => [...warning, currentLetter]);
         } else {
-          setWarning([...warning, currentLetter]);
           transcribedText.push(currentLetter);
         }
       }
