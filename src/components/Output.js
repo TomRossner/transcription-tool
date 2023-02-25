@@ -85,14 +85,14 @@ const Output = () => {
     <>
     <div className='middle'>
       <div className='buttons-container'>
-        {!isAutoTranscribeChecked && (
+        {!isAutoTranscribeChecked ? (
           <Button
             action={() => setTranscribedValue(transcribe(inputValue))}
             text="Transcribe"
             icon={<TbSwitchHorizontal className="icon"/>}
             color="blue"
           />
-        )}
+        ) : null}
         <Button
           action={copyText}
           text={copied ? "Copied!" : "Copy"}

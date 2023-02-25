@@ -1,7 +1,8 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { TranscriptContext } from '../context/TranscriptContext';
 import ToggleSwitch from './ToggleSwitch';
 import {VscChromeClose} from "react-icons/vsc";
+import { LS_setAutoTranscribe, LS_setFontSize } from '../utils/LS';
 
 const Settings = () => {
     const {setDefaultFontSize, defaultFontSize, setSettingsTabOpen, isAutoTranscribeChecked, setIsAutoTranscribeChecked} = useContext(TranscriptContext);
@@ -17,6 +18,11 @@ const Settings = () => {
     const handleAutoTranscribeCheckChange = () => {
         setIsAutoTranscribeChecked(!isAutoTranscribeChecked);
     }
+
+    useEffect(() => {
+        LS_setAutoTranscribe(isAutoTranscribeChecked);
+        LS_setFontSize(defaultFontSize);
+    }, [isAutoTranscribeChecked, defaultFontSize])
 
   return (
     <div className='settings-container'>
