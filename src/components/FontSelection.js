@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext } from 'react';
 import { TranscriptContext } from '../context/TranscriptContext';
 
 const FontSelection = ({state, action}) => {

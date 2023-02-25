@@ -1,4 +1,4 @@
-import React, { createContext, useState, useEffect } from 'react';
+import React, { createContext, useState } from 'react';
 import { LS_getAutoTranscribe, LS_getFontFamily, LS_getFontSize, LS_getTheme } from '../utils/LS';
 
 export const TranscriptContext = createContext({

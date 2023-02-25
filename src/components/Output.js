@@ -5,14 +5,14 @@ import Button from './Button';
 import {MdOutlineContentCopy} from "react-icons/md";
 import {VscClearAll} from "react-icons/vsc";
 import {IoMdDoneAll} from "react-icons/io";
-import {IoWarningOutline} from "react-icons/io5";
+// import {IoWarningOutline} from "react-icons/io5";
 import FontSizeInput from './FontSizeInput';
 import {TbSwitchHorizontal} from "react-icons/tb";
 import FontSelection from './FontSelection';
 import { LS_setFontFamily } from '../utils/LS';
 
 const Output = () => {
-  const {inputValue, resetInput, theme, fontSize, isAutoTranscribeChecked, font, setFontFamily, defaultFont} = useContext(TranscriptContext);
+  const {inputValue, resetInput, fontSize, isAutoTranscribeChecked, font, setFontFamily, defaultFont} = useContext(TranscriptContext);
   const [transcribedValue, setTranscribedValue] = useState();
   const textAreaRef = useRef();
   const [copied, setCopied] = useState(false);
