@@ -9,6 +9,8 @@ import './styles/main.styles.scss';
 import './styles/toggle-switch.styles.scss';
 import './styles/settings.styles.scss';
 import './styles/footer.styles.scss';
+import './styles/dictionary.styles.scss';
+import Dictionary from './components/Dictionary';
 
 function App() {
   const {theme, settingsTabOpen} = useContext(TranscriptContext);
@@ -20,6 +22,7 @@ function App() {
         <Header/>
         <Input/>
         <Output/>
+        <Dictionary/>
       <Footer/>
       </div>
     </div>

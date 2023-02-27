@@ -139,6 +139,7 @@ body{
     }
     
     #output{
+        margin-bottom: 1rem;
         &:focus-visible{
             scale: 1;
         }
