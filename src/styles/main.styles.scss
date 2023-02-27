@@ -102,6 +102,7 @@ body{
 
             .header-text{
                 color: black;
+                font-size: 1.4rem;
 
                 &.dark{
                     color: rgb(255, 255, 255, 0.8);
@@ -111,6 +112,8 @@ body{
                     width: 100%;
                     direction: rtl;
                     text-align: right;
+                    font-family: Heebo;
+                    font-weight: 500;
                 }
             }
         }
