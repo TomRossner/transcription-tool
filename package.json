@@ -54,7 +54,7 @@
     "publish": {
       "provider": "github",
       "owner": "TomRossner",
-      "repo": "transcription-tool"
+      "repo": "ktivapp"
     },
     "win": {
       "target": "nsis",
