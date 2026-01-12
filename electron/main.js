@@ -1,6 +1,7 @@
 const { app, BrowserWindow } = require('electron');
 const path = require('path');
 const { existsSync } = require('fs');
+const { autoUpdater } = require('electron-updater');
 
 const isDev = process.env.NODE_ENV === 'development' || !app.isPackaged;
 const isProd = !isDev;
@@ -59,9 +60,35 @@ function createWindow() {
   });
 }
 
+// Configure auto-updater (only in production)
+if (!isDev) {
+  autoUpdater.autoDownload = false;
+
+  autoUpdater.on('update-available', () => {
+    console.log('Update available');
+    // Download the update
+    autoUpdater.downloadUpdate();
+  });
+
+  autoUpdater.on('update-downloaded', () => {
+    console.log('Update downloaded');
+    // Install the update and restart the app
+    autoUpdater.quitAndInstall(false, true);
+  });
+
+  autoUpdater.on('error', (error) => {
+    console.error('Auto-updater error:', error);
+  });
+}
+
 // This method will be called when Electron has finished initialization
 app.whenReady().then(() => {
   createWindow();
+
+  // Check for updates after app is ready (only in production)
+  if (!isDev) {
+    autoUpdater.checkForUpdatesAndNotify();
+  }
 
   app.on('activate', () => {
     // On macOS, re-create a window when the dock icon is clicked
