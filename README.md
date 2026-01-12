@@ -1,70 +1,83 @@
-# Getting Started with Create React App
+# Transcript Desktop App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A desktop transcription tool built with Electron, React, and Vite.
 
-## Available Scripts
+## Prerequisites
 
-In the project directory, you can run:
+- Node.js (v16 or higher)
+- npm or yarn
 
-### `npm start`
+## Installation
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+1. Install dependencies:
+```bash
+npm install
+```
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Development
 
-### `npm test`
+### Option 1: Run with hot reload (Recommended)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+This will start the Vite dev server and Electron together:
+```bash
+npm run electron:dev
+```
 
-### `npm run build`
+### Option 2: Run separately
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Terminal 1 - Start Vite dev server:
+```bash
+npm run dev
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Terminal 2 - Start Electron:
+```bash
+npm run electron
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Building
 
-### `npm run eject`
+Build the React app for production:
+```bash
+npm run build
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Build the Electron app (creates installers):
+```bash
+npm run electron:dist
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+This will create platform-specific installers in the `dist-electron` folder:
+- Windows: NSIS installer
+- macOS: DMG file
+- Linux: AppImage
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Project Structure
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```
+├── electron/          # Electron main process files
+│   ├── main.js       # Main process entry point
+│   └── preload.js    # Preload script
+├── src/              # React application source
+├── public/           # Static assets
+├── dist/             # Production build output (generated)
+├── dist-electron/    # Electron build output (generated)
+└── vite.config.js    # Vite configuration
+```
 
-## Learn More
+## Scripts
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- `npm run dev` - Start Vite dev server
+- `npm run build` - Build React app for production
+- `npm run electron` - Start Electron (requires dev server running)
+- `npm run electron:dev` - Start both Vite and Electron together
+- `npm run electron:dist` - Build and package Electron app
+- `npm run preview` - Preview production build
+- `npm test` - Run tests
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Technologies
 
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- **Electron** - Desktop app framework
+- **React** - UI library
+- **Vite** - Build tool and dev server
+- **Sass** - CSS preprocessing

@@ -1,0 +1,82 @@
+@import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700&family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Gulzar&family=IBM+Plex+Sans+Arabic&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply box-border m-0 p-0;
+    font-family: Poppins, sans-serif;
+  }
+
+  body {
+    @apply min-h-screen w-full;
+    color: rgb(255, 255, 255, 0.8);
+  }
+}
+
+@layer components {
+  /* Select option styles */
+  select option {
+    color: black;
+    background-color: white;
+  }
+
+  /* Toggle Switch Styles */
+  .switch {
+    @apply relative inline-block;
+    width: 41px;
+    height: 21px;
+  }
+
+  .switch input {
+    @apply opacity-0 w-0 h-0;
+  }
+
+  .slider {
+    @apply absolute cursor-pointer top-0 left-0 right-0 bottom-0 transition-all duration-300;
+    background-color: #ccc;
+  }
+
+  .slider:before {
+    @apply absolute content-[''] transition-all duration-300;
+    height: 21px;
+    width: 21px;
+    left: 0px;
+    bottom: 0px;
+    background-color: white;
+  }
+
+  input:checked + .slider {
+    background-color: #2196F3;
+  }
+
+  input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+  }
+
+  input:checked + .slider:before {
+    transform: translateX(20.5px);
+  }
+
+  .slider.round {
+    border-radius: 34px;
+  }
+
+  .slider.round:before {
+    border-radius: 50%;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    scale: 0.5;
+  }
+  100% {
+    opacity: 1;
+    scale: 1;
+  }
+}

@@ -1,6 +1,9 @@
-import React from 'react';
+interface ToggleSwitchProps {
+  state: boolean;
+  stateFunction: () => void;
+}
 
-const ToggleSwitch = ({state, stateFunction}) => {
+const ToggleSwitch = ({state, stateFunction}: ToggleSwitchProps) => {
 
   return (
     <label className="switch">
