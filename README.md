@@ -1,4 +1,4 @@
-# Transcript Desktop App
+# KtivApp - Transcript Desktop App
 
 A desktop transcription tool built with Electron, React, and Vite.
 
